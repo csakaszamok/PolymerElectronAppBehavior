@@ -1,0 +1,22 @@
+{
+  "name": "PolymerElectronAppBehavior",
+  "homepage": "https://github.com/csakaszamok/PolymerElectronAppBehavior",
+  "authors": [
+    "csakaszamok@gmail.com <csakaszamok@gmail.com>"
+  ],
+  "description": "",
+  "main": "electronapp-behavior.html",
+  "keywords": [
+    "electron",
+    "polymer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "0.9.0"
+}

@@ -1,0 +1,53 @@
+<script>
+    ElectronAppBehavior = {       
+
+      observers: [        
+        '_routePathEvent(route.path)',
+        '_subroutePathEvent(subroute.path)'
+      ],
+
+      created: function(){
+        this.isElectron = (window && window.process && window.process.type) != undefined; 
+
+        if (!this.isElectron) return;
+        //set global variable
+        window.polymerapp = this;        
+
+        //route page override
+        this.oldroutePageChanged = this._routePageChanged;
+        this._routePageChanged = this.newroutePageChanged;
+        this.oldpageChanged = this._pageChanged;
+        this._pageChanged = this.newpageChanged;
+        //TODO: add observer dynamically        
+        //its cant work at runtime :/
+        //this.observers.push('_subroutePathEvent(subroute.path)');                      
+      },
+
+      newpageChanged: function(page) {        
+        if (page.indexOf('.html') == -1)
+          this.oldpageChanged(page);
+        else
+          this.oldroutePageChanged('');  
+      },
+
+      newroutePageChanged : function(page){
+        if (!this.isElectron) return;
+        return;                
+        if (window.location.href.indexOf('index.html') == -1)
+          this.oldroutePageChanged(page);
+        else {          
+          this.oldroutePageChanged('');
+        }  
+      },
+
+      _routePathEvent: function(path){
+        if (!this.isElectron) return;        
+      },
+
+      _subroutePathEvent: function(subpath){
+        if (!this.isElectron) return;        
+        //if (this.isElectron)
+        this.page = subpath.substr(1);
+      }
+    }
+</script>
